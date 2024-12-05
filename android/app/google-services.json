@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "142658810848",
+    "project_id": "lixiapps",
+    "storage_bucket": "lixiapps.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142658810848:android:c97d12e6d8034db8ed7185",
+        "android_client_info": {
+          "package_name": "com.lixiapps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLX-tGKeXYDXtt1kZyhciw8Iy48Jxv2lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
