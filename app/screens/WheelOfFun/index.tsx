@@ -12,12 +12,7 @@ import {
 } from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import Sound from 'react-native-sound';
-
-const adUnitId = __DEV__
-  ? TestIds.BANNER
-  : 'ca-app-pub-9258791108574734/5580549374';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -158,11 +153,6 @@ const WheelOfFun: React.FC<WheelOfFunProps> = ({
         <Icon name="arrow-back" size={height / 18} color="#FDD451" />
       </RectButton>
       <View style={{alignSelf: 'center', zIndex: 1}}>
-        <BannerAd
-          unitId={adUnitId}
-          size={BannerAdSize.FULL_BANNER}
-          requestOptions={{requestNonPersonalizedAdsOnly: true}}
-        />
         <View style={{marginLeft: width - 50, marginTop: 20}}>
           <Icon
             name={soundEnabled ? 'volume-mute' : 'volume-high-sharp'}

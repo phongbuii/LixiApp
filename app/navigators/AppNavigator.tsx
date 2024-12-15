@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {observer} from 'mobx-react-lite';
 import Home from '../screens/Home';
 import {NavigationContainer} from '@react-navigation/native';
-import WheelOfFun from '../screens/WheelOfFun';
+// import WheelOfFun from '../screens/WheelOfFun';
 export type AppStackParamList = {
   Home: undefined;
   WheelOfFun: undefined;
@@ -17,10 +17,10 @@ const AppStack = observer(function AppStack() {
       screenOptions={{headerShown: false}}
       // initialRouteName={isAuthenticated ? "TabNavigator" : "Login"} // @demo remove-current-line
 
-      initialRouteName={'WheelOfFun'} // @demo remove-current-line
+      initialRouteName={'Home'} // @demo remove-current-line
     >
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="WheelOfFun" component={WheelOfFun} />
+      {/* <Stack.Screen name="WheelOfFun" component={WheelOfFun} /> */}
     </Stack.Navigator>
   );
 });
