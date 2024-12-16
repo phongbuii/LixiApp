@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, ViewStyle} from 'react-native';
 import React from 'react';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 type Props = {
   icon?: string;
   text?: string;
@@ -22,7 +22,7 @@ const TextIcon = (props: Props) => {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <AntDesign name="home" size={24} color={'gray'} />
+        <Feather name="home" size={24} color={'gray'} />
         <Text style={styles.text}>{text}</Text>
       </View>
       <Text>{value}</Text>

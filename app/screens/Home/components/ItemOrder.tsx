@@ -12,6 +12,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {getFont, HEIGHT, WIDTH} from '../../../config/functions';
 import Rating from '../../components/Rating';
+import ImageSale from './ImageSale';
 
 interface TourItemProps {
   title: string;
@@ -42,7 +43,7 @@ const TourItem: React.FC<TourItemProps> = ({
 }) => {
   return (
     <TouchableOpacity style={[styles.container, containerStyle]}>
-      <Image source={{uri: uriImage}} style={styles.image} />
+      <ImageSale uriImage={uriImage} />
       <View style={styles.details}>
         <Text style={styles.title}>{title}</Text>
         <View style={styles.info}>

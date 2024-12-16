@@ -79,7 +79,14 @@ const Home = () => {
           <TextIcon value="123.5554" />
           <TextIcon />
           <LineChartComponent />
-          <TextCheckbox />
+          <TextCheckbox
+            text="My Custom Text"
+            listCheckBox={[true, false, true]}
+            onCheckboxPress={index => {
+              // Handle checkbox press
+              console.log(`Checkbox ${index} pressed`);
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
