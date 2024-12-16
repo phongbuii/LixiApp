@@ -295,7 +295,6 @@ class WheelOfFortune extends Component<
       ),
       1,
     );
-    console.log('OKEEEEEEE', this.props.options.rewards);
     return (
       <Animated.View
         style={{
@@ -327,14 +326,7 @@ class WheelOfFortune extends Component<
           style={{
             transform: [{translateY: 8}],
           }}>
-          <Image
-            source={
-              this.props.options.knobSource
-                ? this.props.options.knobSource
-                : require('../../assets/images/knob.png')
-            }
-            style={{width: knobSize, height: (knobSize * 100) / 57}}
-          />
+          <View style={styles.triangle} />
         </Svg>
       </Animated.View>
     );
@@ -344,7 +336,7 @@ class WheelOfFortune extends Component<
     if (this.state.started == false) {
       return (
         <TouchableOpacity
-          style={{marginTop: (width + 20) / 2 + this.props.options.knobSize}}
+          style={{marginTop: (width + 20) / 2.35 + this.props.options.knobSize}}
           onPress={() => this._onPress()}>
           {this.props.options.playButton()}
         </TouchableOpacity>
@@ -359,7 +351,7 @@ class WheelOfFortune extends Component<
           style={{
             position: 'absolute',
             width: width,
-            height: height / 2,
+            height: height / 3,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
@@ -380,6 +372,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     alignItems: 'center',
+    marginTop: -30,
   },
   content: {},
   startText: {
@@ -389,5 +382,17 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.4)',
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10,
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    borderLeftWidth: 20,
+    borderRightWidth: 20,
+    borderBottomWidth: 50,
+    borderLeftColor: 'transparent',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'blue',
+    marginTop: 50,
+    transform: [{rotate: '180deg'}],
   },
 });

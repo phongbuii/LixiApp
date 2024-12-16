@@ -9,15 +9,13 @@ import {
   Vibration,
   AppState,
   AppStateStatus,
+  SafeAreaView,
+  Button,
+  TouchableOpacity,
 } from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import Sound from 'react-native-sound';
-
-const adUnitId = __DEV__
-  ? TestIds.BANNER
-  : 'ca-app-pub-9258791108574734/5580549374';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -26,24 +24,20 @@ interface Player {
   name: string;
 }
 
-interface WheelOfFunProps {
-  players: Player[];
-  setTypeGame: (type: number) => void;
-  setPlayers: (players: Player[]) => void;
-}
-
-const WheelOfFun: React.FC<WheelOfFunProps> = ({
-  players,
-  setTypeGame,
-  setPlayers,
-}) => {
+interface WheelOfFunProps {}
+let playersInit = [
+  {name: 'AA', id: 1},
+  {name: 'BB', id: 2},
+];
+const WheelOfFun: React.FC<WheelOfFunProps> = ({}) => {
+  const [players, setPlayers] = useState(playersInit);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [participants, setParticipants] = useState<string[]>([
     'Người chơi 1',
     'Người chơi 2',
   ]);
   const [loading, setLoading] = useState<boolean>(true);
-
+  let child = useRef();
   useEffect(() => {
     setLoading(true);
     if (players && players.length > 0) {
@@ -55,6 +49,7 @@ const WheelOfFun: React.FC<WheelOfFunProps> = ({
     setTimeout(() => {
       setLoading(false);
     }, 100);
+    console.log('players', players);
   }, [players]);
 
   const wheelOptions = {
@@ -75,11 +70,11 @@ const WheelOfFun: React.FC<WheelOfFunProps> = ({
         <Text style={{color: 'white'}}>Vào việc</Text>
       </View>
     ),
-    onRef: (ref: any) => (this.child = ref),
+    onRef: (ref: any) => (child.current = ref),
   };
 
   const deletePlayer = (index: number) => {
-    if (players.length > 1) {
+    if (players && players.length > 1) {
       const updatedPlayers = [...players];
       updatedPlayers.splice(index, 1);
       setPlayers(updatedPlayers);
@@ -153,16 +148,9 @@ const WheelOfFun: React.FC<WheelOfFunProps> = ({
   }, []);
 
   return (
-    <View style={StyleSheet.absoluteFillObject}>
-      <RectButton onPress={() => setTypeGame(0)} style={{marginTop: 30}}>
-        <Icon name="arrow-back" size={height / 18} color="#FDD451" />
-      </RectButton>
+    <SafeAreaView style={[{flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.8)'}]}>
+      <Text style={styles.title}>VÒNG QUAY MAY MẮN</Text>
       <View style={{alignSelf: 'center', zIndex: 1}}>
-        <BannerAd
-          unitId={adUnitId}
-          size={BannerAdSize.FULL_BANNER}
-          requestOptions={{requestNonPersonalizedAdsOnly: true}}
-        />
         <View style={{marginLeft: width - 50, marginTop: 20}}>
           <Icon
             name={soundEnabled ? 'volume-mute' : 'volume-high-sharp'}
@@ -173,9 +161,16 @@ const WheelOfFun: React.FC<WheelOfFunProps> = ({
         </View>
       </View>
       {!loading && (
-        <WheelOfFortune options={wheelOptions} getWinner={onFinished} />
+        <View style={{transform: [{scale: 0.85}], flex: 1, marginTop: -70}}>
+          <WheelOfFortune options={wheelOptions} getWinner={onFinished} />
+        </View>
       )}
-    </View>
+      <View style={{flex: 0.7}}>
+        <TouchableOpacity>
+          <Text style={styles.danhsach}>Danh Sach</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -189,5 +184,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    textAlign: 'center',
+    fontWeight: 'semibold',
+    fontSize: 18,
+    marginTop: 50,
+    color: '#fff',
+  },
+  addName: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18,
+  },
+  danhsach: {
+    color: '#fff',
+    fontSize: 20,
   },
 });

@@ -1,12 +1,19 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import {observer} from 'mobx-react-lite';
 import Home from '../screens/Home';
 import {NavigationContainer} from '@react-navigation/native';
 import WheelOfFun from '../screens/WheelOfFun';
+import {TabNavigator} from './BottomTabNavigation';
 export type AppStackParamList = {
   Home: undefined;
   WheelOfFun: undefined;
+  TabNavigator: undefined;
 };
+export type AppStackScreenProps<T extends keyof AppStackParamList> =
+  NativeStackScreenProps<AppStackParamList, T>;
 export interface NavigationProps
   extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 const AppStack = observer(function AppStack() {
@@ -17,10 +24,9 @@ const AppStack = observer(function AppStack() {
       screenOptions={{headerShown: false}}
       // initialRouteName={isAuthenticated ? "TabNavigator" : "Login"} // @demo remove-current-line
 
-      initialRouteName={'WheelOfFun'} // @demo remove-current-line
+      initialRouteName={'TabNavigator'} // @demo remove-current-line
     >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="WheelOfFun" component={WheelOfFun} />
+      <Stack.Screen name="TabNavigator" component={TabNavigator} />
     </Stack.Navigator>
   );
 });
